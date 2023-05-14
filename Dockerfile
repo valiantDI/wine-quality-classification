@@ -1,16 +1,19 @@
-FROM python:3.8-slim
+# Install base Python image
+FROM python:3.9-slim-buster
 
-ENV PYTHONUNBUFFERED 1
-
-COPY *.py /app/
+# Copy files to the container
+COPY source/*.py /app/
+COPY source/model.joblib /app/
 COPY requirements.txt /app/
 
-WORKDIR /app
+# Set working directory to previously added app directory
+WORKDIR /app/
 
-ADD . /app
-
+# Install dependencies
 RUN pip install -r requirements.txt
 
+# Expose the port uvicorn is running on
 EXPOSE 80
 
-CMD = ['unicorn', 'server.app', '--reload', '--host', '0.0.0.0', '--port'. '80']
+# Run uvicorn server
+CMD ["uvicorn", "server:app", "--reload", "--host", "0.0.0.0", "--port", "80"]

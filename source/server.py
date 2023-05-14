@@ -1,5 +1,5 @@
 import joblib
-import unicorn
+import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -51,4 +51,4 @@ def predict(wine: WineSpecies):
 
 
 if __name__ == '__main__':
-    unicorn.run(app, host='127.0.0.1', port=80)
+    uvicorn.run(app, host='127.0.0.1', port=80)
