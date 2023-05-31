@@ -37,7 +37,7 @@ def predict(wine: WineSpecies):
         wine.citric_acid,
         wine.residual_sugar,
         wine.chlorides,
-        free_sulfur_dioxide,
+        wine.free_sulfur_dioxide,
         wine.total_sulfur_dioxide,
         wine.density,
         wine.pH,
@@ -46,7 +46,7 @@ def predict(wine: WineSpecies):
     ]]
     prediction = model.predict(features).tolist()[0]
     return {
-        'prediction': prediction
+        "prediction": prediction
     }
 
 
